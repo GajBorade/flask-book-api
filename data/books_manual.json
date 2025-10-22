@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald"
+    },
+    {
+        "id": 2,
+        "title": "1984",
+        "author": "George Orwell"
+    },
+    {
+        "id": 4,
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee"
+    },
+    {
+        "id": 5,
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen"
+    },
+    {
+        "id": 6,
+        "title": "Kosla",
+        "author": "Bhalchandra Nemade"
+    },
+    {
+        "id": 7,
+        "title": "Partner",
+        "author": "Vishwas Patil"
+    },
+    {
+        "id": 8,
+        "title": "Yayati",
+        "author": "Vishnu Sakharam Khandekar"
+    },
+    {
+        "id": 9,
+        "title": "Shyamchi Aai",
+        "author": "Sane Guruji"
+    },
+    {
+        "id": 10,
+        "title": "Unknown",
+        "author": "James Clear"
+    }
+]

@@ -1,0 +1,723 @@
+[
+    {
+        "id": 1,
+        "title": "The Silent Harbor",
+        "author": "Eleanor Marsh",
+        "year": 1998,
+        "isbn": "978-1-4028-9462-0"
+    },
+    {
+        "id": 2,
+        "title": "Echoes of the Valley",
+        "author": "Jonathan Pierce",
+        "year": 2012,
+        "isbn": "978-0-8044-2957-3"
+    },
+    {
+        "id": 3,
+        "title": "Whispers in Winter",
+        "author": "Clara Benson",
+        "year": 2005,
+        "isbn": "978-1-85326-733-9"
+    },
+    {
+        "id": 4,
+        "title": "The Glass Moon",
+        "author": "Oliver Grant",
+        "year": 1976,
+        "isbn": "978-0-141-18267-4"
+    },
+    {
+        "id": 5,
+        "title": "A House Near the Sea",
+        "author": "Margaret Holt",
+        "year": 2019,
+        "isbn": "978-1-250-11213-8"
+    },
+    {
+        "id": 6,
+        "title": "The Forgotten Path (Updated)",
+        "author": "Margaret Holt (Updated)",
+        "year": 1991,
+        "isbn": "978-0-451-52437-1"
+    },
+    {
+        "id": 7,
+        "title": "Distant Fires",
+        "author": "Ruth Emerson",
+        "year": 1987,
+        "isbn": "978-0-7432-7358-2"
+    },
+    {
+        "id": 8,
+        "title": "Winds Over Meriden",
+        "author": "Thomas L. Avery",
+        "year": 2003,
+        "isbn": "978-1-59308-202-4"
+    },
+    {
+        "id": 9,
+        "title": "The Paper Bridge",
+        "author": "Lucinda James",
+        "year": 2015,
+        "isbn": "978-0-06-228557-3"
+    },
+    {
+        "id": 10,
+        "title": "Gardens of Tomorrow",
+        "author": "Patrick Moreau",
+        "year": 1973,
+        "isbn": "978-0-394-82902-9"
+    },
+    {
+        "id": 11,
+        "title": "Shadows Beneath",
+        "author": "Ivy Carter",
+        "year": 2009,
+        "isbn": "978-0-316-40044-7"
+    },
+    {
+        "id": 12,
+        "title": "Letters to Orion",
+        "author": "Samuel Ortega",
+        "year": 2020,
+        "isbn": "978-1-5247-2135-2"
+    },
+    {
+        "id": 13,
+        "title": "The Crimson Field",
+        "author": "Naomi Trent",
+        "year": 2010,
+        "isbn": "978-1-101-90235-8"
+    },
+    {
+        "id": 14,
+        "title": "River of Stars",
+        "author": "Daniel Cooper",
+        "year": 1999,
+        "isbn": "978-0-375-50321-0"
+    },
+    {
+        "id": 15,
+        "title": "The Hollow Tide",
+        "author": "Isabelle Clarke",
+        "year": 2006,
+        "isbn": "978-0-330-49332-4"
+    },
+    {
+        "id": 16,
+        "title": "Under the Pale Sky",
+        "author": "George A. Delaney",
+        "year": 1993,
+        "isbn": "978-0-7434-2214-3"
+    },
+    {
+        "id": 17,
+        "title": "The Mapmaker\u2019s Secret",
+        "author": "Hannah Lowell",
+        "year": 2018,
+        "isbn": "978-1-250-00952-0"
+    },
+    {
+        "id": 18,
+        "title": "Voices at Dusk",
+        "author": "Peter Halvorsen",
+        "year": 2014,
+        "isbn": "978-0-525-43214-5"
+    },
+    {
+        "id": 19,
+        "title": "The Silver Orchard",
+        "author": "Leah Anderson",
+        "year": 2001,
+        "isbn": "978-1-4000-3113-2"
+    },
+    {
+        "id": 20,
+        "title": "Paths of Clay",
+        "author": "Ethan Russell",
+        "year": 1979,
+        "isbn": "978-0-679-75601-7"
+    },
+    {
+        "id": 21,
+        "title": "Songs for the Storm",
+        "author": "Amelia Fox",
+        "year": 2011,
+        "isbn": "978-1-250-20823-7"
+    },
+    {
+        "id": 22,
+        "title": "The Lantern Keepers",
+        "author": "Michael Caine",
+        "year": 1985,
+        "isbn": "978-0-394-74892-4"
+    },
+    {
+        "id": 23,
+        "title": "Threads of Sand",
+        "author": "Julia Keane",
+        "year": 2007,
+        "isbn": "978-1-4165-4067-0"
+    },
+    {
+        "id": 24,
+        "title": "The King\u2019s Silence",
+        "author": "Robert Hale",
+        "year": 1994,
+        "isbn": "978-0-553-57107-1"
+    },
+    {
+        "id": 25,
+        "title": "Autumn\u2019s Edge",
+        "author": "Sophia Miles",
+        "year": 2016,
+        "isbn": "978-1-5011-4803-9"
+    },
+    {
+        "id": 26,
+        "title": "The Iron Road",
+        "author": "Graham Morton",
+        "year": 2008,
+        "isbn": "978-0-670-03714-9"
+    },
+    {
+        "id": 27,
+        "title": "Dreams of the East",
+        "author": "Aisha Khan",
+        "year": 2002,
+        "isbn": "978-1-4000-4502-3"
+    },
+    {
+        "id": 28,
+        "title": "The Endless Garden",
+        "author": "Oscar Bennett",
+        "year": 1990,
+        "isbn": "978-0-385-49156-4"
+    },
+    {
+        "id": 29,
+        "title": "When the Wind Calls",
+        "author": "Lydia Hart",
+        "year": 1989,
+        "isbn": "978-0-451-52871-3"
+    },
+    {
+        "id": 30,
+        "title": "The Sapphire Mirror",
+        "author": "Nicholas Reed",
+        "year": 2013,
+        "isbn": "978-1-5247-2134-5"
+    },
+    {
+        "id": 31,
+        "title": "Voices from the Shore",
+        "author": "Madeline Brooks",
+        "year": 2017,
+        "isbn": "978-1-250-08671-2"
+    },
+    {
+        "id": 32,
+        "title": "The Painted Bridge",
+        "author": "Jack Carter",
+        "year": 1997,
+        "isbn": "978-0-7434-0272-5"
+    },
+    {
+        "id": 33,
+        "title": "Ashes of the Mountain",
+        "author": "Liam Turner",
+        "year": 1974,
+        "isbn": "978-0-394-74016-4"
+    },
+    {
+        "id": 34,
+        "title": "The Winter Throne",
+        "author": "Claudia Finch",
+        "year": 2004,
+        "isbn": "978-0-316-72845-9"
+    },
+    {
+        "id": 35,
+        "title": "Beneath the Willow Tree",
+        "author": "Harper Leeves",
+        "year": 1983,
+        "isbn": "978-0-8129-6909-1"
+    },
+    {
+        "id": 36,
+        "title": "A Candle in the Snow",
+        "author": "Ella Monroe",
+        "year": 1995,
+        "isbn": "978-1-85326-732-2"
+    },
+    {
+        "id": 37,
+        "title": "The Farther Shore",
+        "author": "Daniel Rios",
+        "year": 2009,
+        "isbn": "978-0-06-228556-6"
+    },
+    {
+        "id": 38,
+        "title": "Tides of Memory",
+        "author": "Claire Edmonds",
+        "year": 1980,
+        "isbn": "978-0-679-75600-0"
+    },
+    {
+        "id": 39,
+        "title": "The Broken Compass",
+        "author": "Adam Grayson",
+        "year": 2023,
+        "isbn": "978-1-5247-8888-1"
+    },
+    {
+        "id": 40,
+        "title": "Lanterns on the Hill",
+        "author": "Isabel Greene",
+        "year": 1971,
+        "isbn": "978-0-451-52872-0"
+    },
+    {
+        "id": 41,
+        "title": "Stone and Feather",
+        "author": "Paula Hunter",
+        "year": 1992,
+        "isbn": "978-0-394-82903-8"
+    },
+    {
+        "id": 42,
+        "title": "The Last Chronicle",
+        "author": "Rowan Adams",
+        "year": 2018,
+        "isbn": "978-1-250-00112-9"
+    },
+    {
+        "id": 43,
+        "title": "A Sky of Cinders",
+        "author": "Naomi Rivers",
+        "year": 2014,
+        "isbn": "978-1-5247-2136-0"
+    },
+    {
+        "id": 44,
+        "title": "The Emerald Veil",
+        "author": "Caleb Morgan",
+        "year": 2001,
+        "isbn": "978-0-06-228558-0"
+    },
+    {
+        "id": 45,
+        "title": "Between Two Worlds",
+        "author": "Evelyn Ross",
+        "year": 2010,
+        "isbn": "978-1-250-00214-0"
+    },
+    {
+        "id": 46,
+        "title": "A Storm of Leaves",
+        "author": "Noah Sinclair",
+        "year": 1982,
+        "isbn": "978-0-394-82901-4"
+    },
+    {
+        "id": 47,
+        "title": "The Silver Thread",
+        "author": "Sophie Dean",
+        "year": 1996,
+        "isbn": "978-0-06-228554-2"
+    },
+    {
+        "id": 48,
+        "title": "The Watchmaker\u2019s Daughter",
+        "author": "Benjamin Clarke",
+        "year": 2005,
+        "isbn": "978-0-330-49333-1"
+    },
+    {
+        "id": 49,
+        "title": "The Quiet Fields",
+        "author": "Laura Trent",
+        "year": 2016,
+        "isbn": "978-1-250-08673-6"
+    },
+    {
+        "id": 50,
+        "title": "Rivers of Morning",
+        "author": "Julian Frost",
+        "year": 1984,
+        "isbn": "978-0-394-82902-1"
+    },
+    {
+        "id": 51,
+        "title": "City of Lanterns",
+        "author": "Mina Caldwell",
+        "year": 2021,
+        "isbn": "978-1-5247-2135-3"
+    },
+    {
+        "id": 52,
+        "title": "The Wind That Stayed",
+        "author": "Jacob Flynn",
+        "year": 2013,
+        "isbn": "978-1-250-08674-3"
+    },
+    {
+        "id": 53,
+        "title": "A Garden for Two",
+        "author": "Emily Cross",
+        "year": 1998,
+        "isbn": "978-0-06-228559-7"
+    },
+    {
+        "id": 54,
+        "title": "The Hidden Bell",
+        "author": "Simon Carter",
+        "year": 1977,
+        "isbn": "978-0-394-82900-7"
+    },
+    {
+        "id": 55,
+        "title": "Echoes of Glass",
+        "author": "Grace Holloway",
+        "year": 2007,
+        "isbn": "978-1-4165-4068-7"
+    },
+    {
+        "id": 56,
+        "title": "Winter\u2019s Gate",
+        "author": "Thomas Reed",
+        "year": 2002,
+        "isbn": "978-0-7434-0273-2"
+    },
+    {
+        "id": 57,
+        "title": "The Keeper\u2019s House",
+        "author": "Hazel Morton",
+        "year": 1991,
+        "isbn": "978-0-451-52873-7"
+    },
+    {
+        "id": 58,
+        "title": "A Bridge of Smoke",
+        "author": "Calvin Dorsey",
+        "year": 1988,
+        "isbn": "978-0-394-82905-2"
+    },
+    {
+        "id": 59,
+        "title": "The Memory of Light",
+        "author": "Lydia Romero",
+        "year": 2019,
+        "isbn": "978-1-250-08675-0"
+    },
+    {
+        "id": 60,
+        "title": "Dust Over the City",
+        "author": "Edward Lane",
+        "year": 1975,
+        "isbn": "978-0-394-74019-7"
+    },
+    {
+        "id": 61,
+        "title": "Whispering Pines",
+        "author": "Rachel Adams",
+        "year": 1986,
+        "isbn": "978-0-394-82904-5"
+    },
+    {
+        "id": 62,
+        "title": "The Firebird\u2019s Call",
+        "author": "Mark Jenson",
+        "year": 2000,
+        "isbn": "978-0-06-228560-3"
+    },
+    {
+        "id": 63,
+        "title": "Lighthouse Dreams",
+        "author": "Emma Sanders",
+        "year": 2012,
+        "isbn": "978-1-250-08676-7"
+    },
+    {
+        "id": 64,
+        "title": "The Painted Shore",
+        "author": "Oliver Bates",
+        "year": 1978,
+        "isbn": "978-0-394-82906-9"
+    },
+    {
+        "id": 65,
+        "title": "The Ivory Key",
+        "author": "Beatrice Rowe",
+        "year": 2003,
+        "isbn": "978-1-4165-4069-4"
+    },
+    {
+        "id": 66,
+        "title": "The Orchard Keeper",
+        "author": "Daniel King",
+        "year": 1993,
+        "isbn": "978-0-7434-0274-9"
+    },
+    {
+        "id": 67,
+        "title": "Shades of Amber",
+        "author": "Catherine Walsh",
+        "year": 2015,
+        "isbn": "978-1-5247-2137-7"
+    },
+    {
+        "id": 68,
+        "title": "The Long Night",
+        "author": "Anthony Fraser",
+        "year": 1981,
+        "isbn": "978-0-394-82907-6"
+    },
+    {
+        "id": 69,
+        "title": "The Rose Corridor",
+        "author": "Olivia Chapman",
+        "year": 1999,
+        "isbn": "978-1-85326-734-6"
+    },
+    {
+        "id": 70,
+        "title": "Twilight Harbor",
+        "author": "Gareth Nolan",
+        "year": 2008,
+        "isbn": "978-0-7434-0275-6"
+    },
+    {
+        "id": 71,
+        "title": "The Iron Orchard",
+        "author": "Phoebe Clarke",
+        "year": 1972,
+        "isbn": "978-0-451-52875-1"
+    },
+    {
+        "id": 72,
+        "title": "Echoes of Rain",
+        "author": "Noelle Price",
+        "year": 2017,
+        "isbn": "978-1-250-08678-1"
+    },
+    {
+        "id": 73,
+        "title": "Beneath the Fire Sky",
+        "author": "Lucas Avery",
+        "year": 1983,
+        "isbn": "978-0-394-82908-3"
+    },
+    {
+        "id": 74,
+        "title": "A Valley Remembered",
+        "author": "Eleanor Woods",
+        "year": 1996,
+        "isbn": "978-0-06-228562-7"
+    },
+    {
+        "id": 75,
+        "title": "The Forgotten Crown",
+        "author": "Henry Barrett",
+        "year": 2010,
+        "isbn": "978-1-250-08679-8"
+    },
+    {
+        "id": 76,
+        "title": "The Silent Chamber",
+        "author": "Amelia Dawson",
+        "year": 2022,
+        "isbn": "978-1-5247-2139-1"
+    },
+    {
+        "id": 77,
+        "title": "Tales from the Island",
+        "author": "William Ford",
+        "year": 1989,
+        "isbn": "978-0-394-82910-6"
+    },
+    {
+        "id": 78,
+        "title": "Lanterns of Ash",
+        "author": "Chloe Rivers",
+        "year": 1997,
+        "isbn": "978-1-85326-735-3"
+    },
+    {
+        "id": 79,
+        "title": "The Keeper\u2019s Garden",
+        "author": "Benjamin Carter",
+        "year": 2005,
+        "isbn": "978-0-7434-0277-0"
+    },
+    {
+        "id": 80,
+        "title": "The Road to Bellmere",
+        "author": "Sienna Clarke",
+        "year": 2013,
+        "isbn": "978-1-250-08680-4"
+    },
+    {
+        "id": 81,
+        "title": "Whispers of Gold",
+        "author": "Andrew Marshall",
+        "year": 1988,
+        "isbn": "978-0-394-82911-3"
+    },
+    {
+        "id": 82,
+        "title": "The Candle and the Storm",
+        "author": "Leah Summers",
+        "year": 2002,
+        "isbn": "978-1-4165-4070-0"
+    },
+    {
+        "id": 83,
+        "title": "A Sky for Tomorrow",
+        "author": "Oscar Bell",
+        "year": 1991,
+        "isbn": "978-0-7434-0278-7"
+    },
+    {
+        "id": 84,
+        "title": "The Gilded Path",
+        "author": "Eleanor Hayes",
+        "year": 2019,
+        "isbn": "978-1-250-08681-1"
+    },
+    {
+        "id": 85,
+        "title": "Shadows of Dawn",
+        "author": "Peter Gray",
+        "year": 1970,
+        "isbn": "978-0-394-82912-0"
+    },
+    {
+        "id": 86,
+        "title": "The Song of the River",
+        "author": "Amelia Brooks",
+        "year": 2016,
+        "isbn": "978-1-5247-2140-7"
+    },
+    {
+        "id": 87,
+        "title": "Beyond the Horizon",
+        "author": "Lucas Hill",
+        "year": 1995,
+        "isbn": "978-0-06-228563-4"
+    },
+    {
+        "id": 88,
+        "title": "The Hidden Orchard",
+        "author": "Clara Ford",
+        "year": 2007,
+        "isbn": "978-0-7434-0279-4"
+    },
+    {
+        "id": 89,
+        "title": "The Quiet War",
+        "author": "Henry Mason",
+        "year": 1985,
+        "isbn": "978-0-394-82913-7"
+    },
+    {
+        "id": 90,
+        "title": "The Painted Wind",
+        "author": "Charlotte King",
+        "year": 2011,
+        "isbn": "978-1-250-08682-8"
+    },
+    {
+        "id": 91,
+        "title": "Waves of Yesterday",
+        "author": "George Abbott",
+        "year": 1977,
+        "isbn": "978-0-394-82914-4"
+    },
+    {
+        "id": 92,
+        "title": "The Iron Curtain",
+        "author": "Olivia Moore",
+        "year": 2023,
+        "isbn": "978-1-5247-2141-4"
+    },
+    {
+        "id": 93,
+        "title": "The Marble Tree",
+        "author": "Noah Reed",
+        "year": 1993,
+        "isbn": "978-0-7434-0280-0"
+    },
+    {
+        "id": 94,
+        "title": "The Garden\u2019s Secret",
+        "author": "Alice Morton",
+        "year": 2004,
+        "isbn": "978-1-4165-4071-7"
+    },
+    {
+        "id": 95,
+        "title": "Fields of Smoke",
+        "author": "Caleb Turner",
+        "year": 1990,
+        "isbn": "978-0-394-82915-1"
+    },
+    {
+        "id": 96,
+        "title": "The Winter Bridge",
+        "author": "Hannah Ellis",
+        "year": 2017,
+        "isbn": "978-1-250-08683-5"
+    },
+    {
+        "id": 97,
+        "title": "Lanterns at Sea",
+        "author": "Patrick Long",
+        "year": 1982,
+        "isbn": "978-0-394-82916-8"
+    },
+    {
+        "id": 98,
+        "title": "A Promise of Shadows",
+        "author": "Grace Dalton",
+        "year": 2009,
+        "isbn": "978-0-06-228564-1"
+    },
+    {
+        "id": 99,
+        "title": "The Stone Mirror",
+        "author": "Ethan Moore",
+        "year": 1998,
+        "isbn": "978-1-85326-736-0"
+    },
+    {
+        "id": 100,
+        "title": "The Last Harbor",
+        "author": "Madeline Frost",
+        "year": 2015,
+        "isbn": "978-1-250-08684-2"
+    },
+    {
+        "id": 102,
+        "title": "Shyamchi Aai",
+        "author": "Sane Guruji",
+        "year": 1933,
+        "isbn": "978-81-7525-123-7"
+    },
+    {
+        "id": 103,
+        "title": "Yayati",
+        "author": "Vishnu Sakharam Khandekar",
+        "year": 1960,
+        "isbn": "978-81-7525-410-0"
+    },
+    {
+        "id": 104,
+        "title": "Partner",
+        "author": "Vishwas Patil",
+        "year": 2000,
+        "isbn": "978-81-7525-200-0"
+    }
+]

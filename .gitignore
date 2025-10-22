@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+.venv/
+
+# Flask and local data
+instance/
+.env
+*.log
+
+# Ignore scripts folder with Faker or test data generation
+scripts/
+scripts/data/
+
+# JSON files can be tracked if they are essential, ignore if auto-generated
+# data/fake_books.json
