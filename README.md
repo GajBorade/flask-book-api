@@ -20,11 +20,13 @@ Full CRUD Implementation: Supports all standard REST operations (GET, POST, PUT,
 - **Validation**: Invalid query parameters and invalid book IDs return proper error messages.
 
 ## 📁 Project Structure
+
+```text
 .
 ├── data/                      # JSON storage files
-│ ├── books.json               # Primary data file used by the API
-│ ├── books_manual.json
-│ └── varied_books.json
+│   ├── books.json             # Primary data file used by the API
+│   ├── books_manual.json
+│   └── varied_books.json
 ├── scripts/                   # Utility scripts (e.g., data generation) ignored in Git
 ├── app.py                     # Main Flask application and API routes
 ├── basic_flask_book_api.py    # (Optional) Basic, non-persistent version
