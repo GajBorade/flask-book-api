@@ -1,10 +1,15 @@
 from flask import Flask, jsonify, request
 import json
-from validators import validate_book_id, validate_query_parameters
+from validators import (
+    validate_book_id,
+    validate_query_parameters,
+    page_validation,
+    limit_validation,
+)
 from collections import OrderedDict
 
 # Define valid query keys
-VALID_QUERY_KEYS = {"title", "author", "id", "year", "isbn"}
+VALID_QUERY_KEYS = {"title", "author", "id", "year", "isbn", "page", "limit"}
 
 # Define the order in which the keys appear
 BOOK_KEYS_ORDER = ["id", "title", "author", "year", "isbn"]
@@ -62,13 +67,14 @@ def books():
     Handle GET and POST requests for the /api/books endpoint.
 
     GET:
-        - Reads and returns all books from persistent storage (data/books_manual.json).
-        - Each book includes an id, title, and author.
-        - Response code: 200 OK
+        - Returns all or filtered books from data/books_manual.json
+        - Supports query-based filtering (title, author, year, etc.)
+        - Supports limit/page pagination
+        - 200 OK on success, 404 if no matches, 400 on invalid query keys
 
     POST:
         - Accepts one or more book entries in JSON format (dict or list).
-        - Appends a single book or extends with multiple books to data/books_manual.json
+        - Appends a single book or extends with multiple books to data/books.json
           for persistence.
         - Returns the added book(s) in the response.
         - Response code: 201 Created
@@ -81,8 +87,11 @@ def books():
     :rtype: flask.Response
     """
     if request.method == "GET":
+        # Read all stored books
         books_list = read_books()
+        print("DEBUG - read_books:", books_list)
 
+        # Extract and validate query parameters
         # Convert query string to a regular python dict
         # & get all query parameters dynamically
         query_parameters = request.args.to_dict()
@@ -101,22 +110,59 @@ def books():
                 400,
             )
 
+        # Separate filtering and pagination parameters
+        filter_parameters = {
+            k: v for k, v in query_parameters.items() if k not in ("page", "limit")
+        }
         # Apply filters: keep books matching all provided query parameters
-        for key, value in query_parameters.items():
+        for key, value in filter_parameters.items():
+            value = value.strip().strip('"')
             if key in ("id", "year"):
-                books_list = [
-                    book for book in books_list if book.get(key) == int(value.strip())
-                ]
+                try:
+                    num_value = int(value)
+                except ValueError:
+                    return jsonify({"error": f"Invalid integer for '{key}'"}), 400
+                books_list = [book for book in books_list if book.get(key) == num_value]
             else:
                 books_list = [
                     book
                     for book in books_list
-                    if value.lower().strip().strip('"') in str(book.get(key, "")).lower().strip()
+                    if value.lower().strip().strip('"')
+                    in str(book.get(key, "")).lower().strip()
                 ]
+        # Reorder / sort books
         ordered_books = reorder_books(books_list)
 
-        # Manually serialize the ordered data
-        return create_json_response(ordered_books, 200)
+        if not ordered_books:
+            return jsonify({"error": "No books found"}), 404
+
+        # Validate and extract pagination params
+        # Offset-Based Pagination or Limit/Offset Pagination
+        limit_str = request.args.get("limit", 10)
+        page_str = request.args.get("page", 1)
+
+        # Step 1: validate limit FIRST, because page_validation depends on it
+        limit = limit_validation(limit_str, max_limit=10)
+
+        # Step 2: validate page using the cleaned integer limit
+        try:
+            page = page_validation(
+                page_str, total_books=len(ordered_books), limit=limit
+            )
+        except ValueError:
+            return jsonify({"Error": "No books found"}), 404
+
+        # Step 3: calculate indices safely
+        start_index = (page - 1) * limit
+        end_index = start_index + limit
+
+        # Step 4: slice and respond
+        paginated_books = ordered_books[start_index:end_index]
+
+        # Handle no matches
+        if not paginated_books:
+            return jsonify({"error": "No books found for the given criteria"}), 404
+        return create_json_response(paginated_books, 200)
         # return jsonify(ordered_books), 200
 
     elif request.method == "POST":
@@ -126,7 +172,7 @@ def books():
 
         existing_books = read_books()
 
-        # 🛑 New list to hold final, server-validated books
+        # New list to hold final, server-validated books
         final_books_to_add = []
 
         # Convert single book (dict) to list for uniform processing
@@ -165,7 +211,7 @@ def books():
                     "title": title,
                     "author": author,
                     "year": submitted_book.get("year", ""),
-                    "isbn": submitted_book.get("isbn", "")
+                    "isbn": submitted_book.get("isbn", ""),
                 }
                 final_books_to_add.append(ordered_book)
                 new_id += 1  # Increment ID for the next book
