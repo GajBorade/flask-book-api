@@ -29,6 +29,7 @@ Full CRUD Implementation: Supports all standard REST operations (GET, POST, PUT,
 │   └── varied_books.json
 ├── scripts/                   # Utility scripts (e.g., data generation) ignored in Git
 ├── app.py                     # Main Flask application and API routes
+├── client_fetch_books.py      # Employs loop to fetch all books from the Flask API (/api/books) in pages of 10
 ├── basic_flask_book_api.py    # (Optional) Basic, non-persistent version
 ├── requirements.txt           # Project dependencies
 └── validators.py              # Functions for data validation (ID, query params)
@@ -74,3 +75,41 @@ The API will be available at: http://127.0.0.1:5055/api/books
 | PUT      | /api/books/<int:id> | Update an existing book by ID | ```json PUT http://127.0.0.1:5055/api/books/1 {"title": "Updated Title", "year": 2023} ``` |
 | DELETE   | /api/books/<int:id> | Delete a book by ID           | `DELETE http://127.0.0.1:5055/api/books/1`                                                 |
 
+
+ 
+ ## 🖥 Client Script: Fetch All Books
+
+The `client_fetch_books.py` script acts as a client to fetch books from the API
+in pages of 10 until all books are retrieved. It prints progress and totals
+to the console.
+
+ 🚀 Usage
+
+Make sure the Flask API is running: 
+
+```
+python app.py
+```
+
+Then run the client script: 
+
+```
+python client_fetch_books.py
+```
+
+### Example Output
+
+```
+Fetched 10 books on page 1
+Fetched 10 books on page 2
+...
+No more books after page 11
+Finished fetching 103 books
+```
+## Requirements
+
+- Python 3.x
+
+- requests library
+
+- Flask API running at http://127.0.0.1:5055/api/books
