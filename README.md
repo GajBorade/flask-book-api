@@ -5,17 +5,29 @@ This project demonstrates core backend skills by providing a complete service
 to manage a collection of books, including CRUD operations, dynamic query filtering, 
 and file-based data persistence.
 
+Two versions are included:
+- basic_flask_book_api.py — In-memory storage for learning and quick demos.
+- app.py — Persistent version with pagination, rate limiting, and improved error handling.
+
 ## ✨ Features
 
 Full CRUD Implementation: Supports all standard REST operations (GET, POST, PUT, DELETE).
 
 - **GET /api/books**: Retrieve all books or filter by 
                       `title`, `author`, `id`, `year`, or `isbn`.
+    - **Pagination** supported with ?page=<number>&limit=<number> query parameters.
 - **POST /api/books**: Add new books. Duplicate books (same title & author) are ignored.
 - **PUT /api/books/<book_id>**: Update a book's information.
 - **DELETE /api/books/<book_id>**: Delete a book by ID.
+- **Rate Limiting**: Prevents abuse of API endpoints.
+    - GET /api/books → 10 requests per minute
+    - PUT /api/books/<book_id> → 5 requests per minute
+    - DELETE /api/books/<book_id> → 3 requests per minute
 - **Error Handling**: Returns clear HTTP status codes and JSON error messages 
-                      for invalid requests (e.g., 400 Bad Request, 404 Not Found).
+                      for invalid requests:
+    - 400 Bad Request → invalid input or duplicate book
+    - 404 Not Found → book or page not found
+    - 429 Too Many Requests → rate limit exceeded
 - **Persistence**: Books are stored in `data/books.json`.
 - **Validation**: Invalid query parameters and invalid book IDs return proper error messages.
 
@@ -83,7 +95,7 @@ The `client_fetch_books.py` script acts as a client to fetch books from the API
 in pages of 10 until all books are retrieved. It prints progress and totals
 to the console.
 
- 🚀 Usage
+## 🚀 Usage
 
 Make sure the Flask API is running: 
 
@@ -106,10 +118,10 @@ Fetched 10 books on page 2
 No more books after page 11
 Finished fetching 103 books
 ```
-## Requirements
+## 🧰 Requirements
 
 - Python 3.x
-
-- requests library
-
-- Flask API running at http://127.0.0.1:5055/api/books
+- Flask==2.3.2
+- Flask-Limiter~=4.0.0
+- requests~=2.32.5
+- A running instance of the Flask Book API at `http://127.0.0.1:5055/api/books`
