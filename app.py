@@ -1,4 +1,7 @@
 from flask import Flask, jsonify, request
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from flask_limiter.errors import RateLimitExceeded
 import json
 from validators import (
     validate_book_id,
@@ -15,7 +18,7 @@ VALID_QUERY_KEYS = {"title", "author", "id", "year", "isbn", "page", "limit"}
 BOOK_KEYS_ORDER = ["id", "title", "author", "year", "isbn"]
 
 app = Flask(__name__)
-
+limiter = Limiter(app=app, key_func=get_remote_address)
 # Instruct Flask not to sort keys alphabetically during jsonify
 app.config["JSON_SORT_KEYS"] = False
 
@@ -62,6 +65,7 @@ def create_json_response(data, status_code):
 
 
 @app.route("/api/books", methods=["GET", "POST"])
+@limiter.limit("10/minute")  # Limit to 10 requests per minute
 def books():
     """
     Handle GET and POST requests for the /api/books endpoint.
@@ -247,6 +251,7 @@ def find_book_by_id(book_id):
 
 
 @app.route("/api/books/<int:book_id>", methods=["PUT"])
+@limiter.limit("5/minute")  # Limit to 5 requests per minute
 def handle_book(book_id):
     """Find book with the entered id
     And update its author or title or both"""
@@ -296,6 +301,7 @@ def handle_book(book_id):
 
 # Delete method
 @app.route("/api/books/<int:book_id>", methods=["DELETE"])
+@limiter.limit("3/minute")  # Limit to 10 requests per minute
 def delete_book(book_id):
     """Find the book with the given ID
     And delete the particular book"""
@@ -337,6 +343,16 @@ def not_found_error(error):
 @app.errorhandler(405)
 def method_not_allowed_error(error):
     return jsonify({"error": "Method Not Allowed for this endpoint"}), 405
+
+
+@app.errorhandler(RateLimitExceeded)
+def handle_rate_limit(e):
+    return jsonify(
+        {
+            "error": "Too Many Requests",
+            "message": "You have exceeded your rate limit. Try again later",
+        }
+    )
 
 
 if __name__ == "__main__":
