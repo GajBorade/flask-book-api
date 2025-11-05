@@ -7,7 +7,7 @@ and file-based data persistence.
 
 Two versions are included:
 - basic_flask_book_api.py — In-memory storage for learning and quick demos.
-- app.py — Persistent version with pagination, rate limiting, and improved error handling.
+- app.py — Persistent version with pagination, rate limiting, logging, and improved error handling.
 
 ## ✨ Features
 
@@ -30,6 +30,8 @@ Full CRUD Implementation: Supports all standard REST operations (GET, POST, PUT,
     - 429 Too Many Requests → rate limit exceeded
 - **Persistence**: Books are stored in `data/books.json`.
 - **Validation**: Invalid query parameters and invalid book IDs return proper error messages.
+- **Application Logging**: Uses Python's standard logging library to track request flow, state changes, 
+                           and errors at the INFO level.
 
 ## 📁 Project Structure
 
@@ -118,6 +120,39 @@ Fetched 10 books on page 2
 No more books after page 11
 Finished fetching 103 books
 ```
+
+## 🪵 Logging Configuration:
+The API uses Python's built-in logging module to provide visibility into request handling and internal processes.
+
+By default, the logger is configured to:
+
+    - Level: Processes messages at INFO severity and higher, utilizing DEBUG for 
+             internal diagnostics (like JSON parsing attempts).
+    - Efficiency: Logging is implemented with efficient placeholder formatting (%s, %d) 
+             to minimize processing overhead.
+    - Output: Write logs to the console (sys.stderr).
+    - Format: Include the timestamp, log level, and the message content.
+
+## Example Log Output:
+```
+2025-11-04 21:07:17, INFO: GET request received for /api/books
+2025-11-04 21:07:17, INFO: Returning 10 books for page 1
+```
+
+💾 Customization: Logging to a File
+
+For persistent storage (recommended for production), you can easily redirect logs to a file by updating the 
+logging.basicConfig() call in app.py and adding the filename parameter:
+
+# Change console logging to file logging
+```
+logging.basicConfig(
+    level=logging.INFO, 
+    filename='api.log', # ⬅️ ADD THIS PARAMETER
+    # ... include other format and datefmt parameters here
+)
+```
+
 ## 🧰 Requirements
 
 - Python 3.x
