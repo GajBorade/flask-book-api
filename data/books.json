@@ -113,7 +113,7 @@
     },
     {
         "id": 17,
-        "title": "The Mapmaker\u2019s Secret",
+        "title": "The Mapmaker’s Secret",
         "author": "Hannah Lowell",
         "year": 2018,
         "isbn": "978-1-250-00952-0"
@@ -162,14 +162,14 @@
     },
     {
         "id": 24,
-        "title": "The King\u2019s Silence",
+        "title": "The King’s Silence",
         "author": "Robert Hale",
         "year": 1994,
         "isbn": "978-0-553-57107-1"
     },
     {
         "id": 25,
-        "title": "Autumn\u2019s Edge",
+        "title": "Autumn’s Edge",
         "author": "Sophia Miles",
         "year": 2016,
         "isbn": "978-1-5011-4803-9"
@@ -330,7 +330,7 @@
     },
     {
         "id": 48,
-        "title": "The Watchmaker\u2019s Daughter",
+        "title": "The Watchmaker’s Daughter",
         "author": "Benjamin Clarke",
         "year": 2005,
         "isbn": "978-0-330-49333-1"
@@ -386,14 +386,14 @@
     },
     {
         "id": 56,
-        "title": "Winter\u2019s Gate",
+        "title": "Winter’s Gate",
         "author": "Thomas Reed",
         "year": 2002,
         "isbn": "978-0-7434-0273-2"
     },
     {
         "id": 57,
-        "title": "The Keeper\u2019s House",
+        "title": "The Keeper’s House",
         "author": "Hazel Morton",
         "year": 1991,
         "isbn": "978-0-451-52873-7"
@@ -428,7 +428,7 @@
     },
     {
         "id": 62,
-        "title": "The Firebird\u2019s Call",
+        "title": "The Firebird’s Call",
         "author": "Mark Jenson",
         "year": 2000,
         "isbn": "978-0-06-228560-3"
@@ -547,7 +547,7 @@
     },
     {
         "id": 79,
-        "title": "The Keeper\u2019s Garden",
+        "title": "The Keeper’s Garden",
         "author": "Benjamin Carter",
         "year": 2005,
         "isbn": "978-0-7434-0277-0"
@@ -652,7 +652,7 @@
     },
     {
         "id": 94,
-        "title": "The Garden\u2019s Secret",
+        "title": "The Garden’s Secret",
         "author": "Alice Morton",
         "year": 2004,
         "isbn": "978-1-4165-4071-7"
@@ -719,5 +719,61 @@
         "author": "Vishwas Patil",
         "year": 2000,
         "isbn": "978-81-7525-200-0"
+    },
+    {
+        "id": 105,
+        "title": "अग्निपंख",
+        "author": "ए.पी.जे. अब्दुल कलाम",
+        "year": 1999,
+        "isbn": "978-8179927649"
+    },
+    {
+        "id": 106,
+        "title": "रश्मिरथी",
+        "author": "रामधारी सिंह 'दिनकर'",
+        "year": "",
+        "isbn": ""
+    },
+    {
+        "id": 107,
+        "title": "ययाति आणि देवयानी",
+        "author": "वि. वा. शिरवाडकर",
+        "year": 1966,
+        "isbn": "978-8177583694"
+    },
+    {
+        "id": 108,
+        "title": "El amor en los tiempos del cólera",
+        "author": "Gabriel García Márquez",
+        "year": 1985,
+        "isbn": "978-0307387445"
+    },
+    {
+        "id": 109,
+        "title": "Buddenbrooks",
+        "author": "Thomas Mann",
+        "year": 1901,
+        "isbn": "978-3596291654"
+    },
+    {
+        "id": 110,
+        "title": "गोदान",
+        "author": "मुंशी प्रेमचंद",
+        "year": 1936,
+        "isbn": ""
+    },
+    {
+        "id": 111,
+        "title": "Le Père Goriot",
+        "author": "Honoré De Balzac",
+        "year": 1835,
+        "isbn": "978-2070366650"
+    },
+    {
+        "id": 112,
+        "title": "Анна Каренина",
+        "author": "Лев Толстой",
+        "year": 1877,
+        "isbn": "978-0140449174"
     }
 ]
