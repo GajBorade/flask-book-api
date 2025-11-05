@@ -1,3 +1,4 @@
+import logging
 from flask import Flask, jsonify, request
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -18,7 +19,17 @@ VALID_QUERY_KEYS = {"title", "author", "id", "year", "isbn", "page", "limit"}
 BOOK_KEYS_ORDER = ["id", "title", "author", "year", "isbn"]
 
 app = Flask(__name__)
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s, %(levelname)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+
+# Configuring Client IP-Based Rate Limiting
 limiter = Limiter(app=app, key_func=get_remote_address)
+
 # Instruct Flask not to sort keys alphabetically during jsonify
 app.config["JSON_SORT_KEYS"] = False
 
@@ -46,9 +57,14 @@ def read_books():
 
 
 def write_books(new_books):
-    """Write books to JSON file for persistence"""
+    """
+    Write books to JSON file for persistence.
+
+    Uses ensure_ascii=False to ensure Hindi/Marathi characters are
+    written directly, making the file easily readable and writable.
+    """
     with open("data/books.json", "w", encoding="utf-8") as file_object:
-        json.dump(new_books, file_object, indent=4)
+        json.dump(new_books, file_object, indent=4, ensure_ascii=False)
 
 
 # Function to standardize all JSON responses
@@ -64,36 +80,61 @@ def create_json_response(data, status_code):
     return json_output, status_code, {"Content-Type": "application/json"}
 
 
+def log_book_action(method, book_id):
+    """Logs a PUT or DELETE request with the method and ID."""
+    app.logger.info("%s request received for book ID %d.", method, book_id)
+
+
 @app.route("/api/books", methods=["GET", "POST"])
 @limiter.limit("10/minute")  # Limit to 10 requests per minute
 def books():
     """
     Handle GET and POST requests for the /api/books endpoint.
 
-    GET:
-        - Returns all or filtered books from data/books_manual.json
-        - Supports query-based filtering (title, author, year, etc.)
-        - Supports limit/page pagination
-        - 200 OK on success, 404 if no matches, 400 on invalid query keys
+    GET (Retrieve Books):
+        - **Functionality:** Returns a list of books, optionally filtered
+          and paginated.
+        - **Rate Limit:** Enforced by @limiter.limit("10/minute")
+          (Flask-Limiter).
+        - **Query Parameters:** Supports filtering by fields like 'title',
+          'author', 'year', etc., and controls for pagination.
+        - **Pagination:** Supports **Limit/Page-Based Pagination** via
+          'limit' (max 10) and 'page' parameters.
+        - **Logging:** Logs the request and final book count at **INFO** level (app.logger.info).
+        - **Success (200 OK):** Returns the requested list of books.
+        - **Error Conditions:**
+            - 404 Not Found: No books found matching the filter or page
+              criteria.
+            - 400 Bad Request: Invalid query parameter key or invalid
+              data type (e.g., non-integer 'year').
+            - 429 Too Many Requests: Rate limit exceeded (handled by
+              Limiter extension).
 
-    POST:
-        - Accepts one or more book entries in JSON format (dict or list).
-        - Appends a single book or extends with multiple books to data/books.json
-          for persistence.
-        - Returns the added book(s) in the response.
-        - Response code: 201 Created
+    POST (Create Book(s)):
+        - **Functionality:** Accepts one or more book entries in JSON
+          format (dict or list of dicts).
+        - **Data Persistence:** Appends new, unique books to
+          data/books.json.
+        - **Validation:** Performs duplicate checking based on 'title' and
+          'author'. Client-provided 'id' is ignored/deleted.
+        - **Success (201 Created):** Returns the newly added book(s),
+          including server-assigned 'id'.
+        - **Error Conditions:**
+            - 400 Bad Request: Invalid payload format or if all submitted
+              books are duplicates.
 
-    Other methods:
-        - Unsupported methods return 405 Method Not Allowed.
+    Other Methods:
+        - Unsupported HTTP methods return **405 Method Not Allowed**.
 
-    :return: JSON response containing all books (GET),
-             newly added book(s) (POST), or an error message.
+    :return: JSON response containing requested data or an error payload.
     :rtype: flask.Response
     """
+    app.logger.info(f"{request.method} request received for /api/books")
+
     if request.method == "GET":
         # Read all stored books
         books_list = read_books()
-        print("DEBUG - read_books:", books_list)
+        app.logger.debug("Read books from file.")
 
         # Extract and validate query parameters
         # Convert query string to a regular python dict
@@ -163,6 +204,8 @@ def books():
         # Step 4: slice and respond
         paginated_books = ordered_books[start_index:end_index]
 
+        app.logger.info(f"Returning {len(paginated_books)} books for page {page}")
+        # print("DEBUG - read_paginated_books:", paginated_books)
         # Handle no matches
         if not paginated_books:
             return jsonify({"error": "No books found for the given criteria"}), 404
@@ -170,9 +213,26 @@ def books():
         # return jsonify(ordered_books), 200
 
     elif request.method == "POST":
+        app.logger.debug("Attempting to parse JSON payload for new book(s).")
         # Read the JSON sent by the client (could be dict/ list)
         # Get the new book(s) data from the client
-        data = request.get_json()
+        # silent=True prevents Flask from immediately raising a 400 error on bad JSON.
+        data = request.get_json(silent=True)
+
+        # Check explicitly if the JSON failed to parse (data is None)
+        if data is None:
+            # Handle empty body case
+            app.logger.error("POST request received with empty or invalid JSON payload")
+            return (
+                jsonify(
+                    {
+                        "error": "Invalid JSON format or empty request body.",
+                        "message": "Ensure the Content-Type is 'application/json' "
+                        "& body is valid JSON.",
+                    }
+                ),
+                400,
+            )
 
         existing_books = read_books()
 
@@ -184,7 +244,7 @@ def books():
             data = [data]
 
         if not data:
-            return "Bad Request", 400
+            return jsonify({"error": "Bad Request", "message": "No data provided"}), 400
 
         # Finding max_id
         max_id = max((book["id"] for book in existing_books), default=0)
@@ -223,16 +283,30 @@ def books():
         # If nothing is left to add, return an error
         if not final_books_to_add:
             # Added a more descriptive message
-            return "Book already exists (or no valid books submitted)", 400
+            return (
+                jsonify(
+                    {
+                        "error": "Bad Request",
+                        "message": "Book already exists (or no valid books submitted)",
+                    }
+                ),
+                400,
+            )
 
             # 5. Use the final, corrected list for persistence
         existing_books.extend(final_books_to_add)
         write_books(existing_books)
 
+        app.logger.info(
+            "Successfully added %d new unique book(s). Max ID is now %d.",
+            len(final_books_to_add),
+            new_id - 1,
+        )
         # 6. Return the correct, ordered list
         return create_json_response(final_books_to_add, 201)
 
-    return "Method not allowed", 405  # Invalid HTTP method(besides POST/GET)
+    # Fallback for any unsupported HTTP method (besides POST/GET)
+    return "Method not allowed", 405
 
 
 def find_book_by_id(book_id):
@@ -255,6 +329,8 @@ def find_book_by_id(book_id):
 def handle_book(book_id):
     """Find book with the entered id
     And update its author or title or both"""
+    log_book_action(request.method, book_id)
+
     # Read books from data/books_manual.json
     all_books = read_books()
 
@@ -265,7 +341,15 @@ def handle_book(book_id):
 
     # Book not found error
     if book is None:
-        return "Book not found", 404
+        return (
+            jsonify(
+                {
+                    "error": "Book Not Found",
+                    "message": f"Book with id {book_id} not found",
+                }
+            ),
+            404,
+        )
 
     # Update the book with new data
     new_data = request.get_json()
@@ -280,6 +364,8 @@ def handle_book(book_id):
     if "isbn" in new_data:
         book["isbn"] = new_data["isbn"]
 
+    # Apply ALL updates to the local 'book' object
+    book.update(new_data)
     # get index of the book to update books.json
     # for i in range(len(all_books)):
     #     if all_books[i]['id'] == book_id:
@@ -292,8 +378,10 @@ def handle_book(book_id):
     # Save all books back to the JSON file
     write_books(all_books)
 
-    # 🔑 FIX 2: Reorder the single updated book before returning it
+    # 🔑 Reorder the single updated book before returning it
     ordered_book_response = reorder_books([book])[0]
+
+    app.logger.info("Successfully updated book_ID %d.", book_id)
     # Return the updated book
     return create_json_response(ordered_book_response, 200)
     # return jsonify(ordered_book_response)
@@ -305,6 +393,8 @@ def handle_book(book_id):
 def delete_book(book_id):
     """Find the book with the given ID
     And delete the particular book"""
+    log_book_action(request.method, book_id)
+
     # Read books from data/books.json
     all_books = read_books()
 
@@ -315,7 +405,16 @@ def delete_book(book_id):
 
     # Book not found error
     if book is None:
-        return "Book not found", 404
+        app.logger.warning("Attempted deletion on non-existent book ID %d.", book_id)
+        return (
+            jsonify(
+                {
+                    "error": "Book Not Found",
+                    "message": f"Book with id {book_id} not found",
+                }
+            ),
+            404,
+        )
 
     # Remove the book from the list
     all_books.remove(book)
@@ -323,6 +422,7 @@ def delete_book(book_id):
     # Save all books back to the JSON file
     write_books(all_books)
 
+    app.logger.info("Successfully deleted book ID %d.", book_id)
     # Return the deleted book
     return (
         jsonify(
